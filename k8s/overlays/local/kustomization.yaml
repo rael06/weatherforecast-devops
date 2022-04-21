@@ -1,0 +1,3 @@
+resources:
+  - ../../base/weatherforecast-api
+  - ../../base/weatherforecast-ui

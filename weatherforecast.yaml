@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherforecastui
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: weatherforecastui
+  template:
+    metadata:
+      labels:
+        app: weatherforecastui
+    spec:
+      containers:
+        - name: weatherforecastui
+          imagePullPolicy: IfNotPresent
+          image: weatherforecastui
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weatherforecastui-svc
+spec:
+  selector:
+    app: weatherforecastui
+  type: NodePort
+  ports:
+    - port: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherforecastapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weatherforecastapi
+  template:
+    metadata:
+      labels:
+        app: weatherforecastapi
+    spec:
+      containers:
+        - name: weatherforecastapi
+          imagePullPolicy: IfNotPresent
+          image: weatherforecastapi
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weatherforecastapi-svc
+spec:
+  selector:
+    app: weatherforecastapi
+  type: NodePort
+  ports:
+    - port: 80

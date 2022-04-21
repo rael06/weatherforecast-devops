@@ -1,0 +1,13 @@
+services:
+  api: 
+    build: ./WeatherForecastApi/WeatherForecastApi.Main
+    ports:
+      - "7999:80"
+    image: weatherforecastapi
+  ui: 
+    build: ./WeatherForecastUi/weatherforecast
+    ports:
+      - "7998:80"
+    image: weatherforecastui
+  redis:
+    image: redis

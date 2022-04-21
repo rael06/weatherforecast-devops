@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherforecastui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weatherforecastui
+  template:
+    metadata:
+      labels:
+        app: weatherforecastui
+    spec:
+      containers:
+        - name: weatherforecastui
+          imagePullPolicy: IfNotPresent
+          image: weatherforecastui
+          ports:
+            - containerPort: 80
